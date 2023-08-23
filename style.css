@@ -83,7 +83,6 @@ body{
     .history{
         display: none;
     }
-    
 }
 
 @media screen and (min-width: 600px)
@@ -157,6 +156,21 @@ body{
         width: 30%;
         height: 80%;
         float: right;
+        color: white;
+    }
+
+    .clearHistory{
+        border: none;
+        background-color: #34668f;
+        cursor: pointer;
+        scale: 1.1;
+        border-radius: 10px;
+        transition: .2s ease-in-out;
+    }
+
+    .clearHistory:hover
+    {
+        background-color: #264f70;
         color: white;
     }
 

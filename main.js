@@ -1,6 +1,7 @@
 const resultbox = document.getElementById("result");
 const lastCalc = document.getElementById("lastCalc");
 const historyCalculation = document.getElementById("history");
+const clrHistory = document.getElementById("clearHistory");
 
 let a;
 let b;
@@ -15,10 +16,15 @@ let op;
 let history;
 let isFirst = true;
 
-let resultValue;
+let resultValue = "";
 
 a = "";
 b = "";
+
+function init()
+{
+    clrHistory.style.display = "none";
+}
 
 function AddNumber(numberToAdd)
 {
@@ -59,7 +65,7 @@ function Operator(operator)
         break;
         case "2^":
             resultbox.innerText += " 2^ ";
-            newOperator = "**";
+            newOperator = "2^";
         break;
     }
 }
@@ -94,6 +100,12 @@ function historyCalc(history)
     historyCalculation.appendChild(element);
 }
 
+function clearHistory()
+{
+    historyCalculation.innerHTML = "";
+    clrHistory.style.display = "none";
+}
+
 function ShowResult()
 {
     const floor = Math.floor;
@@ -105,28 +117,31 @@ function ShowResult()
     {
         case "+":
             resultValue = a2 + b2
-            resultbox.innerText += " = " + resultValue;
-            LastCalculation("+");
+            LastCalculation(" + ");
         break;
 
         case "-":
             resultValue = a2 - b2
-            resultbox.innerText += " = " + resultValue;
-            LastCalculation("-");
+            LastCalculation(" - ");
         break;
         case "*":
             resultValue = a2 * b2
-            resultbox.innerText += " = " + resultValue;
-            LastCalculation("*");
+            LastCalculation(" * ");
         break;
         case "/":
             resultValue = a2 / b2
-            resultbox.innerText += " = " + resultValue;
-            LastCalculation("/");
+            LastCalculation(" / ");
         break;
         case "2^":
-            resultValue = a2 ** b2
-            resultbox.innerText += " = " + resultValue;
+            resultValue = b2 ** a2
+            LastCalculation(" 2^ ");
         break;
     }
+
+    resultbox.innerText = resultValue;
+    clrHistory.style.display = "block";
+
+    a = resultValue.toString();
+    b = "";
+    isFirst = false;
 }
