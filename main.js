@@ -1,5 +1,6 @@
 const resultbox = document.getElementById("result");
 const lastCalc = document.getElementById("lastCalc");
+const historyCalculation = document.getElementById("history");
 
 let a;
 let b;
@@ -11,6 +12,7 @@ let numberToAdd;
 let operator;
 let newOperator;
 let op;
+let history;
 let isFirst = true;
 
 let resultValue;
@@ -77,7 +79,19 @@ function Clear()
 
 function LastCalculation(op)
 {
-    lastCalc.innerText = a2 + op + b2 + "=" + resultValue;
+    const calc = a2 + op + b2 + "=" + resultValue;
+
+    lastCalc.innerText = calc;
+
+    historyCalc(calc);
+}
+
+function historyCalc(history)
+{
+    const element = document.createElement("h3")
+    element.innerText = history;
+
+    historyCalculation.appendChild(element);
 }
 
 function ShowResult()
